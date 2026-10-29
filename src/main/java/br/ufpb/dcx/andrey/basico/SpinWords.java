@@ -1,3 +1,4 @@
+package br.ufpb.dcx.andrey.basico;
 
 public class SpinWords {
     public static String spinWords(String sentence) {
