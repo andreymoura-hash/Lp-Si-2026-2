@@ -1,28 +1,26 @@
+//MODED BY ANDREY :D
+
 package br.ufpb.dcx.andrey.agenda;
 
+import java.util.ArrayList;
+import java.util.List;
 
 public class AgendaEnderecos {
-
     private int maxContatos;
-    private int contContatos;
-    private Contato [] contatos;
+    private List<Contato> contatos;
 
     public AgendaEnderecos(int maxContatos) {
         this.maxContatos = maxContatos;
-        this.contContatos = 0;
-        this.contatos = new Contato[maxContatos];
+        this.contatos = new ArrayList<Contato>(maxContatos);
     }
-
     public boolean apagaContato(String nomeContato) {
-        for (int k=0; k<contContatos; k++) {
-            Contato c = this.contatos[k];
-            if (c.getNome().equalsIgnoreCase(nomeContato)) {
-                while (k<contContatos-1) {
-                    this.contatos[k]=this.contatos[k+1];
-                    k++;
-                }
-                contatos[k] = null;
-                contContatos--;
+        if (nomeContato == null){
+            return false;
+        }
+        for (int k = 0; k < contatos.size(); k++) {
+            Contato c = contatos.get(k);
+            if (c != null && c.getNome() != null && c.getNome().equalsIgnoreCase(nomeContato)) {
+                contatos.remove(k);
                 return true;
             }
         }
@@ -30,18 +28,18 @@ public class AgendaEnderecos {
     }
 
     public boolean cadastraContato(Contato c) {
-        if (this.contContatos< maxContatos) {
-            this.contatos[contContatos] = c;
-            contContatos++;
-            return true;
-        } else {
+        if (c == null || contatos.size() >= maxContatos){
             return false;
         }
+        return contatos.add(c);
     }
     public Endereco pesquisaEndereco(String nomeContato) {
-        for (int k=0; k<contContatos; k++) {
-            Contato c = this.contatos[k];
-            if (c.getNome().equalsIgnoreCase(nomeContato)) {
+        if (nomeContato == null){
+            return null;
+        }
+        for (int k=0; k<contatos.size(); k++) {
+            Contato c = contatos.get(k);
+            if (c != null && c.getNome() != null && c.getNome().equalsIgnoreCase(nomeContato)) {
                 return c.getEndereco();
             }
         }
@@ -49,13 +47,20 @@ public class AgendaEnderecos {
     }
     public int pesquisarQuantidadeDeContatosDoBairro(String bairro) {
         int cont = 0;
-        for (int k=0; k<contContatos; k++) {
-            Contato c = this.contatos[k];
-            if (c.getEndereco().getBairro().equalsIgnoreCase(bairro)) {
+        if (bairro == null){
+            throw new IllegalArgumentException("O nome do bairro não pode ser nulo.");
+        }
+        for (int k=0; k<contatos.size(); k++) {
+            Contato c = contatos.get(k);
+            if (c != null && c.getEndereco() != null && c.getEndereco().getBairro() != null &&
+                    c.getEndereco().getBairro().equalsIgnoreCase(bairro)) {
                 cont++;
             }
         }
         return cont;
+    }
+    public List<Contato> listarContatos(){
+        return new ArrayList<Contato>(this.contatos);
     }
 
 }
