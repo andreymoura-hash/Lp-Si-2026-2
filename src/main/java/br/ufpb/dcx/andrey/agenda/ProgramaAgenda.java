@@ -105,6 +105,10 @@ public class ProgramaAgenda {
             public void actionPerformed(ActionEvent e){
                 ArrayList<String> nome = new ArrayList<String>();
                 List<Contato> lista = agenda.listarContatos();
+                if (lista.size() == 0 ){
+                    JOptionPane.showMessageDialog(null, "Sem Contatos na agenda.", "Lista de Contatos", JOptionPane.INFORMATION_MESSAGE);
+                    return;
+                }
                 for (Contato c: lista){
                     nome.add(c.getNome());
                 }
