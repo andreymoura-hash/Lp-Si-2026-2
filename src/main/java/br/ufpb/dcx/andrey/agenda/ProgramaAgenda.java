@@ -127,6 +127,8 @@ public class ProgramaAgenda {
         frame.setLocationRelativeTo(null); // Centraliza o frame
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Finaliza o processo ao fechar o frame
         frame.setVisible(true);
+        String[] p = new String[10];
+        System.out.print(p.length);
 
     }
 }
