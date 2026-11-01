@@ -13,5 +13,6 @@ public class Main {
             precoTotal+=preco;
         }
         System.out.println("Preço total gasto com almoço: "+ precoTotal);
+        scan.close();
     }
 }
