@@ -85,4 +85,12 @@ public class BancoList {
         }
         return contasCliente;
     }
+    public Conta getConta (String numConta, String numAgencia){
+        for (Conta c: contas){
+            if(c.getNumeroConta().equalsIgnoreCase(numConta) && c.getNumeroAgencia().equalsIgnoreCase(numAgencia));
+            return c;
+        }
+        return null;
+    }
 }
+

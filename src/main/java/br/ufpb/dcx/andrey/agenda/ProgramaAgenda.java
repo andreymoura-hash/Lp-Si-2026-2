@@ -119,7 +119,7 @@ public class ProgramaAgenda {
 
 
         // Configura Frame
-        frame.setLayout(null); // Remove o gerenciador de layou padrão do JFrame
+        frame.setLayout(null); // Remove o gerenciador de layout padrão do JFrame
         frame.add(createContact);
         frame.add(listContacts);
         frame.add(textLabel);
